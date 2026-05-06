@@ -1,0 +1,24 @@
+name: CI du jeu Devinette
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Récupérer le dépôt
+      uses: actions/checkout@v4
+
+    - name: Configurer Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Exécuter les tests unitaires
+      run: |
+        python -m unittest test_mesfonctions.py
